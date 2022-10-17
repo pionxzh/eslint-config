@@ -18,7 +18,7 @@ importers:
 
   packages/all:
     specifiers:
-      '@pionxzh/eslint-config-vue': workspace:*
+      '@pionxzh/eslint-config-ts': workspace:*
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
       eslint: ^8.25.0
@@ -34,7 +34,7 @@ importers:
       jsonc-eslint-parser: ^2.1.0
       yaml-eslint-parser: ^1.1.0
     dependencies:
-      '@pionxzh/eslint-config-vue': link:../vue
+      '@pionxzh/eslint-config-ts': link:../typescript
       '@typescript-eslint/eslint-plugin': 5.40.1_vcunoyu347gmi72pwsm7mdvjca
       '@typescript-eslint/parser': 5.40.1_eslint@8.25.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.25.0
