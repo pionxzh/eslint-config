@@ -26,7 +26,7 @@ module.exports = {
     // Override JS
     'no-useless-constructor': 'off',
     'indent': 'off',
-    '@typescript-eslint/indent': ['error', 2, {
+    '@typescript-eslint/indent': ['error', 4, {
       SwitchCase: 1,
       VariableDeclarator: 1,
       outerIIFEBody: 1,

@@ -60,7 +60,7 @@ module.exports = {
     'eqeqeq': ['error', 'always', { null: 'ignore' }],
     'func-call-spacing': ['error', 'never'],
     'generator-star-spacing': ['error', { before: true, after: true }],
-    'indent': ['error', 2, {
+    'indent': ['error', 4, {
       SwitchCase: 1,
       VariableDeclarator: 1,
       outerIIFEBody: 1,
