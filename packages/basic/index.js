@@ -331,7 +331,6 @@ module.exports = {
     'yml/no-empty-document': 'off',
 
     // pionxzh
-    'pionxzh/if-newline': 'error',
     'pionxzh/import-dedupe': 'error',
     // 'pionxzh/prefer-inline-type-import': 'error',
   },
