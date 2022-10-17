@@ -1,0 +1,22 @@
+{
+  "name": "@pionxzh/eslint-config-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@7.13.5",
+  "author": "pionxzh",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "pnpm -r run test",
+    "prepare": "pnpm -r run stub",
+    "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public"
+  },
+  "devDependencies": {
+    "@pionxzh/eslint-config": "*",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.23.0",
+    "eslint-plugin-pionxzh": "workspace:*",
+    "typescript": "^4.8.2"
+  }
+}

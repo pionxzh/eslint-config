@@ -1,0 +1,27 @@
+{
+  "name": "@pionxzh/eslint-config-ts",
+  "version": "0.0.1",
+  "description": "",
+  "author": "pionxzh",
+  "license": "MIT",
+  "homepage": "https://github.com/pionxzh/eslint-config",
+  "keywords": [
+    "eslint-config"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "peerDependencies": {
+    "eslint": ">=7.4.0",
+    "typescript": ">=3.9"
+  },
+  "dependencies": {
+    "@pionxzh/eslint-config-basic": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0"
+  }
+}
