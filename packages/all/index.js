@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [
-    '@pionxzh/eslint-config-ts',
-  ],
+    extends: [
+        '@pionxzh/eslint-config-ts',
+    ],
 }
