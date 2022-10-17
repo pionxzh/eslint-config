@@ -1,4 +1,5 @@
 # @pionxzh/eslint-config
+Forked from [antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 [![npm](https://img.shields.io/npm/v/@pionxzh/eslint-config?color=a1b858&label=)](https://npmjs.com/package/@pionxzh/eslint-config)
 
