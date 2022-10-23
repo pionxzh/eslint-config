@@ -177,7 +177,7 @@ module.exports = {
         },
     ],
     rules: {
-    // import
+        // import
         'import/order': 'error',
         'import/first': 'error',
         'import/no-mutable-exports': 'error',
@@ -204,7 +204,7 @@ module.exports = {
         'no-cond-assign': ['error', 'always'],
         'func-call-spacing': ['off', 'never'],
         'key-spacing': ['error', { beforeColon: false, afterColon: true }],
-        'indent': ['error', 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }],
+        'indent': ['error', 4, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }],
         'no-restricted-syntax': [
             'error',
             'DebuggerStatement',
@@ -332,6 +332,6 @@ module.exports = {
 
         // pionxzh
         'pionxzh/import-dedupe': 'error',
-    // 'pionxzh/prefer-inline-type-import': 'error',
+        // 'pionxzh/prefer-inline-type-import': 'error',
     },
 }
