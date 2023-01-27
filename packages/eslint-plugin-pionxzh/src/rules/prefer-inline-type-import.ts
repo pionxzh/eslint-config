@@ -1,6 +1,7 @@
 // Ported from https://github.com/gajus/eslint-plugin-canonical/blob/master/src/rules/preferInlineTypeImport.js
 // by Gajus Kuizinas https://github.com/gajus
-
+import type { TSESTree } from '@typescript-eslint/utils'
+import type { RuleFixer, SourceCode } from '@typescript-eslint/utils/dist/ts-eslint'
 import { createEslintRule } from '../utils'
 
 export const RULE_NAME = 'prefer-inline-type-import'
@@ -27,15 +28,13 @@ export default createEslintRule<Options, MessageIds>({
         return {
             ImportDeclaration: (node) => {
                 // ignore bare type imports
-                if (node.specifiers.length === 1 && ['ImportNamespaceSpecifier', 'ImportDefaultSpecifier'].includes(node.specifiers[0].type))
-                    return
+                if (node.specifiers.length === 1 && ['ImportNamespaceSpecifier', 'ImportDefaultSpecifier'].includes(node.specifiers[0].type)) { return }
                 if (node.importKind === 'type') {
                     context.report({
                         *fix(fixer) {
                             yield * removeTypeSpecifier(fixer, sourceCode, node)
 
-                            for (const specifier of node.specifiers)
-                                yield fixer.insertTextBefore(specifier, 'type ')
+                            for (const specifier of node.specifiers) { yield fixer.insertTextBefore(specifier, 'type ') }
                         },
                         loc: node.loc,
                         messageId: 'preferInlineTypeImport',
@@ -47,7 +46,7 @@ export default createEslintRule<Options, MessageIds>({
     },
 })
 
-function *removeTypeSpecifier(fixer, sourceCode, node) {
+function * removeTypeSpecifier(fixer: RuleFixer, sourceCode: Readonly<SourceCode>, node: TSESTree.ImportDeclaration) {
     const importKeyword = sourceCode.getFirstToken(node)
 
     const typeIdentifier = sourceCode.getTokenAfter(importKeyword)
