@@ -72,6 +72,9 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
         '@typescript-eslint/prefer-ts-expect-error': 'error',
 
+        // Style
+        '@typescript-eslint/array-type': ['warn', { default: 'array-simple' }], // prefer T[] than Array<T>
+
         // Override JS
         'no-useless-constructor': 'off',
         'indent': 'off',
