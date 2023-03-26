@@ -28,6 +28,17 @@ module.exports = {
         'pnpm-lock.yaml',
         'yarn.lock',
         '__snapshots__',
+        // ignore for in lint-staged
+        '*.css',
+        '*.png',
+        '*.ico',
+        '*.toml',
+        '*.patch',
+        '*.txt',
+        '*.crt',
+        '*.key',
+        'Dockerfile',
+        // force include
         '!.github',
         '!.vitepress',
         '!.vscode',
@@ -36,6 +47,7 @@ module.exports = {
         'html',
         'unicorn',
         'pionxzh',
+        'unused-imports',
     ],
     settings: {
         'import/resolver': {
@@ -141,7 +153,7 @@ module.exports = {
             },
         },
         {
-            files: ['*.js'],
+            files: ['*.js', '*.cjs'],
             rules: {
                 '@typescript-eslint/no-var-requires': 'off',
             },
@@ -175,6 +187,8 @@ module.exports = {
                 '@typescript-eslint/comma-dangle': 'off',
                 '@typescript-eslint/consistent-type-imports': 'off',
                 'import/no-unresolved': 'off',
+                'unused-imports/no-unused-imports': 'off',
+                'unused-imports/no-unused-vars': 'off',
                 'no-alert': 'off',
                 'no-console': 'off',
                 'no-restricted-imports': 'off',
@@ -197,7 +211,13 @@ module.exports = {
         'curly': ['error', 'multi-line'],
         'quotes': ['error', 'single'],
         'quote-props': ['error', 'consistent-as-needed'],
-        'no-unused-vars': 'warn',
+
+        'unused-imports/no-unused-imports': 'error',
+        'unused-imports/no-unused-vars': [
+            'warn',
+            { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+        ],
+
         'no-param-reassign': 'off',
         'array-bracket-spacing': ['error', 'never'],
         'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
