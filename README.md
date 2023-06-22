@@ -4,7 +4,7 @@ Forked from [antfu/eslint-config](https://github.com/antfu/eslint-config)
 [![npm](https://img.shields.io/npm/v/@pionxzh/eslint-config?color=a1b858&label=)](https://npmjs.com/package/@pionxzh/eslint-config)
 
 - Single quotes, no semi
-- Auto fix for formatting (aimed to be used standalone without Prettier)
+- Auto fix for formatting (aimed to be used standalone **without** Prettier)
 - Designed to work with TypeScript, Vue, React out-of-box
 - Lint also for json, yaml, markdown
 - Sorted imports, dangling commas
@@ -51,7 +51,8 @@ Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?it
   "prettier.enable": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
   }
 }
 ```
