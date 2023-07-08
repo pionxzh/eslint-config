@@ -42,17 +42,34 @@ For example:
 }
 ```
 
-### Config VS Code auto fix
+### Config VS Code (auto fix)
 
 Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and create `.vscode/settings.json`
 
-```json
+```jsonc
 {
   "prettier.enable": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.organizeImports": false,
+
+    // The following is optional.
+    // It's better to put under project setting `.vscode/settings.json`
+    // to avoid conflicts with working with different eslint configs
+    // that does not support all formats.
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "html",
+      "markdown",
+      "json",
+      "jsonc",
+      "yaml"
+    ]
   }
 }
 ```
