@@ -1,13 +1,12 @@
 import { RuleTester } from '@typescript-eslint/rule-tester'
-import rule, { RULE_NAME } from './no-ts-export-equal'
+import rule, { RULE_NAME } from './no-const-enum'
 
 const valids = [
-    { code: 'export default {}', filename: 'test.ts' },
-    { code: 'export = {}', filename: 'test.js' },
+    'enum E {}',
 ]
 
 const invalids = [
-    { code: 'export = {}', filename: 'test.ts' },
+    'const enum E {}',
 ]
 
 const ruleTester: RuleTester = new RuleTester({
@@ -17,7 +16,7 @@ const ruleTester: RuleTester = new RuleTester({
 ruleTester.run(RULE_NAME, rule as any, {
     valid: valids,
     invalid: invalids.map(i => ({
-        ...i,
-        errors: [{ messageId: 'noTsExportEqual' }],
+        code: i,
+        errors: [{ messageId: 'noConstEnum' }],
     })),
 })

@@ -40,7 +40,7 @@ module.exports = {
         'Dockerfile',
         // force include
         '!.github',
-        '!.vitepress',
+        '**/.vitepress/cache',
         '!.vscode',
     ],
     plugins: [
@@ -139,8 +139,9 @@ module.exports = {
                         pathPattern: '^exports.*$',
                         order: [
                             'types',
-                            'require',
                             'import',
+                            'require',
+                            'default',
                         ],
                     },
                 ],
@@ -200,6 +201,7 @@ module.exports = {
                 'no-unused-vars': 'off',
                 'pionxzh/no-cjs-exports': 'off',
                 'pionxzh/no-ts-export-equal': 'off',
+                'n/prefer-global/process': 'off',
             },
         },
     ],
@@ -340,7 +342,7 @@ module.exports = {
         'max-statements-per-line': ['error', { max: 1 }],
 
         // node
-        // 'n/prefer-global/process': ['error', 'never'], // Not sure if we need it as we are using `process.env.NODE_ENV` a lot in front-end.
+        'n/prefer-global/process': ['error', 'never'],
         'n/prefer-global/buffer': ['error', 'never'],
         'n/no-callback-literal': 'off',
 
@@ -396,6 +398,8 @@ module.exports = {
         'yml/no-empty-document': 'off',
 
         // pionxzh
+        'pionxzh/no-import-node-modules-by-path': 'error',
+        // 'pionxzh/if-newline': 'error',
         'pionxzh/import-dedupe': 'error',
         // 'pionxzh/top-level-function': 'error',
         // 'pionxzh/prefer-inline-type-import': 'error',

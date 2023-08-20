@@ -1,5 +1,6 @@
 const fs = require('node:fs')
 const { join } = require('node:path')
+const process = require('node:process')
 const basic = require('@pionxzh/eslint-config-basic')
 
 const tsconfig = process.env.ESLINT_TSCONFIG || 'tsconfig.eslint.json'
@@ -164,6 +165,8 @@ module.exports = {
         'pionxzh/generic-spacing': 'error',
         'pionxzh/no-cjs-exports': 'error',
         'pionxzh/no-ts-export-equal': 'error',
+        'pionxzh/no-const-enum': 'error',
+        'pionxzh/named-tuple-spacing': 'error',
 
         // off
         '@typescript-eslint/consistent-indexed-object-style': 'off',

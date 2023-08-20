@@ -2,7 +2,7 @@
 // by Gajus Kuizinas https://github.com/gajus
 import { createEslintRule } from '../utils'
 import type { TSESTree } from '@typescript-eslint/utils'
-import type { RuleFixer, SourceCode } from '@typescript-eslint/utils/dist/ts-eslint'
+import type { RuleFixer, SourceCode } from '@typescript-eslint/utils/ts-eslint'
 
 export const RULE_NAME = 'prefer-inline-type-import'
 export type MessageIds = 'preferInlineTypeImport'
@@ -14,7 +14,6 @@ export default createEslintRule<Options, MessageIds>({
         type: 'suggestion',
         docs: {
             description: 'Inline type import',
-            recommended: 'error',
         },
         fixable: 'code',
         schema: [],
@@ -31,7 +30,7 @@ export default createEslintRule<Options, MessageIds>({
                 if (node.specifiers.length === 1 && ['ImportNamespaceSpecifier', 'ImportDefaultSpecifier'].includes(node.specifiers[0].type)) {
                     return
                 }
-                if (node.importKind === 'type') {
+                if (node.importKind === 'type' && node.specifiers.length > 0) {
                     context.report({
                         *fix(fixer) {
                             yield * removeTypeSpecifier(fixer, sourceCode, node)
