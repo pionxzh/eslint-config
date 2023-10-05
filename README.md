@@ -128,28 +128,28 @@ And that's it! Or you can configure each integration individually, for example:
 import pionxzh from '@pionxzh/eslint-config'
 
 export default pionxzh({
-  // Enable stylistic formatting rules
-  // stylistic: true,
+    // Enable stylistic formatting rules
+    // stylistic: true,
 
-  // Or customize the stylistic rules
-  stylistic: {
-    indent: 4, // 2, or 'tab'
-    quotes: 'single', // or 'double'
-  },
+    // Or customize the stylistic rules
+    stylistic: {
+        indent: 4, // 2, or 'tab'
+        quotes: 'single', // or 'double'
+    },
 
-  // TypeScript and Vue are auto-detected, you can also explicitly enable them:
-  typescript: true,
-  vue: true,
+    // TypeScript and Vue are auto-detected, you can also explicitly enable them:
+    typescript: true,
+    vue: true,
 
-  // Disable jsonc and yaml support
-  jsonc: false,
-  yaml: false,
+    // Disable jsonc and yaml support
+    jsonc: false,
+    yaml: false,
 
-  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-  ignores: [
-    './fixtures',
+    // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+    ignores: [
+        './fixtures',
     // ...globs
-  ]
+    ]
 })
 ```
 
@@ -160,19 +160,19 @@ The `pionxzh` factory function also accepts any number of arbitrary custom confi
 import pionxzh from '@pionxzh/eslint-config'
 
 export default pionxzh(
-  {
+    {
     // Configures for pionxzh's config
-  },
+    },
 
-  // From the second arguments they are ESLint Flat Configs
-  // you can have multiple configs
-  {
-    files: ['**/*.ts'],
-    rules: {},
-  },
-  {
-    rules: {},
-  },
+    // From the second arguments they are ESLint Flat Configs
+    // you can have multiple configs
+    {
+        files: ['**/*.ts'],
+        rules: {},
+    },
+    {
+        rules: {},
+    },
 )
 ```
 
@@ -181,37 +181,37 @@ Going more advanced, you can also import fine-grained configs and compose them a
 ```js
 // eslint.config.js
 import {
-  comments,
-  ignores,
-  imports,
-  javascript,
-  jsdoc,
-  jsonc,
-  markdown,
-  node,
-  sortPackageJson,
-  sortTsconfig,
-  stylistic,
-  typescript,
-  unicorn,
-  vue,
-  yml,
+    comments,
+    ignores,
+    imports,
+    javascript,
+    jsdoc,
+    jsonc,
+    markdown,
+    node,
+    sortPackageJson,
+    sortTsconfig,
+    stylistic,
+    typescript,
+    unicorn,
+    vue,
+    yml,
 } from '@pionxzh/eslint-config'
 
 export default [
-  ...ignores(),
-  ...javascript(),
-  ...comments(),
-  ...node(),
-  ...jsdoc(),
-  ...imports(),
-  ...unicorn(),
-  ...typescript(),
-  ...stylistic(),
-  ...vue(),
-  ...jsonc(),
-  ...yml(),
-  ...markdown(),
+    ...ignores(),
+    ...javascript(),
+    ...comments(),
+    ...node(),
+    ...jsdoc(),
+    ...imports(),
+    ...unicorn(),
+    ...typescript(),
+    ...stylistic(),
+    ...vue(),
+    ...jsonc(),
+    ...yml(),
+    ...markdown(),
 ]
 ```
 
@@ -250,20 +250,20 @@ Certain rules would only be enabled in specific files, for example, `ts/*` rules
 import pionxzh from '@pionxzh/eslint-config'
 
 export default pionxzh(
-  { vue: true, typescript: true },
-  {
+    { vue: true, typescript: true },
+    {
     // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
-    files: ['**/*.vue'],
-    rules: {
-      'vue/operator-linebreak': ['error', 'before'],
+        files: ['**/*.vue'],
+        rules: {
+            'vue/operator-linebreak': ['error', 'before'],
+        },
     },
-  },
-  {
+    {
     // Without `files`, they are general rules for all files
-    rules: {
-      'style/semi': ['error', 'never'],
-    },
-  }
+        rules: {
+            'style/semi': ['error', 'never'],
+        },
+    }
 )
 ```
 
@@ -274,16 +274,16 @@ We also provided an `overrides` options to make it easier:
 import pionxzh from '@pionxzh/eslint-config'
 
 export default pionxzh({
-  overrides: {
-    vue: {
-      'vue/operator-linebreak': ['error', 'before'],
-    },
-    typescript: {
-      'ts/consistent-type-definitions': ['error', 'interface'],
-    },
-    yaml: {},
+    overrides: {
+        vue: {
+            'vue/operator-linebreak': ['error', 'before'],
+        },
+        typescript: {
+            'ts/consistent-type-definitions': ['error', 'interface'],
+        },
+        yaml: {},
     // ...
-  }
+    }
 })
 ```
 
@@ -296,9 +296,9 @@ You can optionally enable the [type aware rules](https://typescript-eslint.io/li
 import pionxzh from '@pionxzh/eslint-config'
 
 export default pionxzh({
-  typescript: {
-    tsconfigPath: 'tsconfig.json',
-  },
+    typescript: {
+        tsconfigPath: 'tsconfig.json',
+    },
 })
 ```
 
