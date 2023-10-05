@@ -16,6 +16,7 @@
   "eslint.rules.customizations": [
     { "rule": "@stylistic/*", "severity": "off" },
     { "rule": "style*", "severity": "off" },
+    { "rule": "style/max-statements-per-line", "severity": "default" },
     { "rule": "*-indent", "severity": "off" },
     { "rule": "*-spacing", "severity": "off" },
     { "rule": "*-spaces", "severity": "off" },

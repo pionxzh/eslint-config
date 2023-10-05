@@ -133,7 +133,7 @@ export default pionxzh({
 
   // Or customize the stylistic rules
   stylistic: {
-    indent: 2, // 4, or 'tab'
+    indent: 4, // 2, or 'tab'
     quotes: 'single', // or 'double'
   },
 

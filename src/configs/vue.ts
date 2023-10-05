@@ -12,7 +12,8 @@ export function vue(
   } = options
 
   const {
-    indent = 2,
+    // @pionxzh prefer to use 4 spaces
+    indent = 4,
   } = typeof stylistic === 'boolean' ? {} : stylistic
 
   return [

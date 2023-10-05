@@ -3,7 +3,8 @@ import { pluginAntfu, pluginStylistic } from '../plugins'
 
 export function stylistic(options: StylisticConfig = {}): FlatESLintConfigItem[] {
   const {
-    indent = 2,
+    // @pionxzh prefer to use 4 spaces
+    indent = 4,
     quotes = 'single',
   } = options
 
@@ -15,10 +16,12 @@ export function stylistic(options: StylisticConfig = {}): FlatESLintConfigItem[]
         style: pluginStylistic,
       },
       rules: {
-        'curly': ['error', 'multi-or-nest', 'consistent'],
+        // @pionxzh prefer `multi-line` for curly braces
+        'curly': ['error', 'multi-line'],
 
         'pionxzh/consistent-list-newline': 'error',
-        'pionxzh/if-newline': 'error',
+        // @pionxzh: prefer to have a shorter if statement
+        // 'pionxzh/if-newline': 'error',
         'pionxzh/top-level-function': 'error',
 
         'style/array-bracket-spacing': ['error', 'never'],

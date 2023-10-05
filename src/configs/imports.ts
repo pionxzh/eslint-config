@@ -20,7 +20,13 @@ export function imports(options: OptionsStylistic = {}): FlatESLintConfigItem[] 
         'import/no-named-default': 'error',
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
-        'import/order': 'error',
+        'import/order': ['error', {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+      }],
 
         'pionxzh/import-dedupe': 'error',
         'pionxzh/no-import-node-modules-by-path': 'error',
