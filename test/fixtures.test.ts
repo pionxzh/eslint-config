@@ -15,19 +15,23 @@ afterAll(async () => {
 runWithConfig('js', {
     typescript: false,
     vue: false,
+    react: false,
 })
 runWithConfig('all', {
     typescript: true,
     vue: true,
+    react: true,
 })
 runWithConfig('no-style', {
     typescript: true,
     vue: true,
+    react: true,
     stylistic: false,
 })
 runWithConfig('tab-double-quotes', {
     typescript: true,
     vue: true,
+    react: true,
     stylistic: {
         indent: 'tab',
         quotes: 'double',

@@ -20,6 +20,7 @@ import {
     vue,
     yaml,
 } from './configs'
+import { react } from './configs/react'
 import { combine } from './utils'
 import type { FlatESLintConfigItem, OptionsConfig } from './types'
 
@@ -41,6 +42,12 @@ const VuePackages = [
     '@slidev/cli',
 ]
 
+const ReactPackages = [
+    'react',
+    'react-dom',
+    'next',
+]
+
 /**
  * Construct an array of ESLint flat config items.
  */
@@ -48,6 +55,7 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
     const {
         isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
         vue: enableVue = VuePackages.some(i => isPackageExists(i)),
+        react: enableReact = ReactPackages.some(i => isPackageExists(i)),
         typescript: enableTypeScript = isPackageExists('typescript'),
         stylistic: enableStylistic = true,
         gitignore: enableGitignore = true,
@@ -90,6 +98,11 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
         componentExts.push('vue')
     }
 
+    if (enableReact) {
+        componentExts.push('jsx')
+        if (enableTypeScript) componentExts.push('tsx')
+    }
+
     if (enableTypeScript) {
         configs.push(typescript({
             ...typeof enableTypeScript !== 'boolean'
@@ -118,6 +131,14 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
     if (enableVue) {
         configs.push(vue({
             overrides: overrides.vue,
+            stylistic: enableStylistic,
+            typescript: !!enableTypeScript,
+        }))
+    }
+
+    if (enableReact) {
+        configs.push(react({
+            overrides: overrides.react,
             stylistic: enableStylistic,
             typescript: !!enableTypeScript,
         }))
