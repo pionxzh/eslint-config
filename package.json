@@ -90,6 +90,7 @@
   "pnpm": {
     "overrides": {
       "array-includes": "npm:@nolyfill/array-includes@latest",
+      "array.prototype.flat": "npm:@nolyfill/array.prototype.flat@latest",
       "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@latest",
       "array.prototype.tosorted": "npm:@nolyfill/array.prototype.tosorted@latest",
       "es-iterator-helpers": "npm:@nolyfill/es-iterator-helpers@latest",
