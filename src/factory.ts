@@ -68,9 +68,6 @@ export function pionxzh(options: OptionsConfig & ConfigItem = {}, ...userConfigs
         : typeof options.stylistic === 'object'
             ? options.stylistic
             : {}
-    if (stylisticOptions && !('jsx' in stylisticOptions)) {
-        stylisticOptions.jsx = options.jsx ?? true
-    }
 
     const configs: ConfigItem[][] = []
 

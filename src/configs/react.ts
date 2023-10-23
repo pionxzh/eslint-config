@@ -82,39 +82,11 @@ export function react(
                 'react/prop-types': 'off',
                 'react/react-in-jsx-scope': 'off',
 
-                'style/jsx-curly-brace-presence': ['error', { children: 'never', props: 'never' }],
-
                 ...stylistic
                     ? {
                             'react/jsx-boolean-value': ['error', 'never', { always: [] }],
-                            'react/jsx-closing-bracket-location': ['error', 'tag-aligned'],
-                            'react/jsx-curly-newline': ['error', {
-                                multiline: 'consistent',
-                                singleline: 'consistent',
-                            }],
-                            'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
-                            'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
                             'react/jsx-fragments': ['error', 'syntax'],
-                            'react/jsx-indent': ['error', indent, { checkAttributes: false, indentLogicalExpressions: true }],
-                            'react/jsx-indent-props': ['error', indent],
-                            'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
                             'react/jsx-no-useless-fragment': 'error',
-                            'react/jsx-props-no-multi-spaces': 'error',
-                            'react/jsx-tag-spacing': ['error', {
-                                afterOpening: 'never',
-                                beforeClosing: 'never',
-                                beforeSelfClosing: 'always',
-                                closingSlash: 'never',
-                            }],
-                            'react/jsx-wrap-multilines': ['error', {
-                                arrow: 'parens-new-line',
-                                assignment: 'parens-new-line',
-                                condition: 'parens-new-line',
-                                declaration: 'parens-new-line',
-                                logical: 'parens-new-line',
-                                prop: 'parens-new-line',
-                                return: 'parens-new-line',
-                            }],
                             'react/sort-comp': ['error', {
                                 groups: {
                                     lifecycle: [
@@ -165,6 +137,7 @@ export function react(
                                 ],
                             }],
                             'react/style-prop-object': 'error',
+
                             'style/indent': ['error', indent, {
                                 SwitchCase: 1,
                                 VariableDeclarator: 1,
@@ -189,7 +162,37 @@ export function react(
                                 offsetTernaryExpressions: true,
                                 outerIIFEBody: 1,
                             }],
+                            'style/jsx-closing-bracket-location': ['error', 'tag-aligned'],
+                            'style/jsx-closing-tag-location': 'error',
+                            'style/jsx-curly-brace-presence': ['error', { children: 'never', propElementValues: 'always', props: 'never' }],
+                            'style/jsx-curly-newline': ['error', {
+                                multiline: 'consistent',
+                                singleline: 'consistent',
+                            }],
+                            'style/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
+                            'style/jsx-equals-spacing': ['error', 'never'],
+                            'style/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
+                            'style/jsx-indent': ['error', indent, { checkAttributes: false, indentLogicalExpressions: true }],
+                            'style/jsx-indent-props': ['error', indent],
+                            'style/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+                            'style/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
+                            'style/jsx-props-no-multi-spaces': 'error',
                             'style/jsx-quotes': ['error', 'prefer-double'],
+                            'style/jsx-tag-spacing': ['error', {
+                                afterOpening: 'never',
+                                beforeClosing: 'never',
+                                beforeSelfClosing: 'always',
+                                closingSlash: 'never',
+                            }],
+                            'style/jsx-wrap-multilines': ['error', {
+                                arrow: 'parens-new-line',
+                                assignment: 'parens-new-line',
+                                condition: 'parens-new-line',
+                                declaration: 'parens-new-line',
+                                logical: 'parens-new-line',
+                                prop: 'parens-new-line',
+                                return: 'parens-new-line',
+                            }],
                         }
                     : {},
 
