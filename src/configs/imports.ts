@@ -1,7 +1,7 @@
 import { pluginAntfu, pluginImport } from '../plugins'
-import type { FlatESLintConfigItem, OptionsStylistic } from '../types'
+import type { ConfigItem, OptionsStylistic } from '../types'
 
-export function imports(options: OptionsStylistic = {}): FlatESLintConfigItem[] {
+export function imports(options: OptionsStylistic = {}): ConfigItem[] {
     const {
         stylistic = true,
     } = options
@@ -20,6 +20,7 @@ export function imports(options: OptionsStylistic = {}): FlatESLintConfigItem[] 
                 'import/no-named-default': 'error',
                 // 'import/no-self-import': 'error',
                 'import/no-webpack-loader-syntax': 'error',
+                // @pionxzh: prefer to sort imports
                 'import/order': ['error', {
                     alphabetize: {
                         caseInsensitive: true,

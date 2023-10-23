@@ -1,7 +1,7 @@
 import { pluginComments } from '../plugins'
-import type { FlatESLintConfigItem } from '../types'
+import type { ConfigItem } from '../types'
 
-export function comments(): FlatESLintConfigItem[] {
+export function comments(): ConfigItem[] {
     return [
         {
             name: 'pionxzh:eslint-comments',

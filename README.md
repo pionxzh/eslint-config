@@ -74,8 +74,8 @@ Add the following settings to your `.vscode/settings.json`:
 
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.fixAll": "explicit",
+    "source.organizeImports": "never"
   },
 
   // Silent the stylistic rules in you IDE, but still auto fix them
@@ -178,6 +178,11 @@ export default pionxzh(
 
 Going more advanced, you can also import fine-grained configs and compose them as you wish:
 
+<details>
+<summary>Advanced Example</summary>
+
+We don't recommend using this style in general usages, as there are shared options between configs and might need extra care to make them consistent.
+
 ```js
 // eslint.config.js
 import {
@@ -195,31 +200,33 @@ import {
     typescript,
     unicorn,
     vue,
-    yml,
+    yaml,
 } from '@pionxzh/eslint-config'
 
 export default [
     ...ignores(),
-    ...javascript(),
+    ...javascript(/* Options */),
     ...comments(),
     ...node(),
     ...jsdoc(),
     ...imports(),
     ...unicorn(),
-    ...typescript(),
+    ...typescript(/* Options */),
     ...stylistic(),
     ...vue(),
     ...jsonc(),
-    ...yml(),
+    ...yaml(),
     ...markdown(),
 ]
 ```
+
+</details>
 
 Check out the [configs](https://github.com/pionxzh/eslint-config/blob/main/src/configs) and [factory](https://github.com/pionxzh/eslint-config/blob/main/src/factory.ts) for more details.
 
 > Thanks to [sxzz/eslint-config](https://github.com/sxzz/eslint-config) for the inspiration and reference.
 
-## Plugins Renaming
+### Plugins Renaming
 
 Since flat config requires us to explicitly provide the plugin names (instead of mandatory convention from npm package name), we renamed some plugins to make overall scope more consistent and easier to write.
 
@@ -285,6 +292,28 @@ export default pionxzh({
     // ...
     }
 })
+```
+
+### Optional Rules
+
+This config also provides some optional plugins/rules for extended usages.
+
+#### `sort-keys`
+
+This plugin [`eslint-plugin-sort-keys`](https://github.com/namnm/eslint-plugin-sort-keys) allows you to keep object keys sorted with auto-fix.
+
+It's installed but no rules are enabled by default.
+
+It's recommended to opt-in on each file individually using [configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments-1).
+
+```js
+/* eslint sort-keys/sort-keys-fix: "error" */
+const objectWantedToSort = {
+    a: 2,
+    b: 1,
+    c: 3,
+}
+/* eslint sort-keys/sort-keys-fix: "off" */
 ```
 
 ### Type Aware Rules

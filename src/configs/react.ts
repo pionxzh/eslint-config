@@ -1,12 +1,11 @@
 import globals from 'globals'
-import { OFF } from '../flags'
 import { GLOB_JSX, GLOB_TSX } from '../globs'
 import { pluginReact, pluginReactHooks } from '../plugins'
-import type { FlatESLintConfigItem, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
+import type { ConfigItem, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
 
 export function react(
     options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
     const {
         overrides = {},
         stylistic = true,
@@ -58,11 +57,10 @@ export function react(
                 ...pluginReact.configs.recommended.rules as any,
                 ...pluginReactHooks.configs.recommended.rules as any,
 
-                'node/prefer-global/process': OFF,
+                'node/prefer-global/process': 'off',
 
                 'react/display-name': ['off', { ignoreTranspilerName: false }],
                 'react/iframe-missing-sandbox': 'warn',
-                'react/jsx-curly-brace-presence': ['error', { children: 'never', props: 'never' }],
                 'react/no-unknown-property': ['error', {
                     ignore: [
                         // SVG
@@ -83,6 +81,8 @@ export function react(
                 'react/no-unused-state': 'error',
                 'react/prop-types': 'off',
                 'react/react-in-jsx-scope': 'off',
+
+                'style/jsx-curly-brace-presence': ['error', { children: 'never', props: 'never' }],
 
                 ...stylistic
                     ? {

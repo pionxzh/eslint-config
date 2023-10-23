@@ -1,10 +1,9 @@
 import globals from 'globals'
-import { OFF } from '../flags'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 import { pluginAntfu, pluginUnusedImports } from '../plugins'
-import type { FlatESLintConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types'
+import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types'
 
-export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): FlatESLintConfigItem[] {
+export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): ConfigItem[] {
     const {
         isInEditor = false,
         overrides = {},
@@ -30,6 +29,9 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
                     sourceType: 'module',
                 },
                 sourceType: 'module',
+            },
+            linterOptions: {
+                reportUnusedDisableDirectives: true,
             },
             name: 'pionxzh:javascript',
             plugins: {
@@ -200,7 +202,7 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
 
                 'symbol-description': 'error',
                 'unicode-bom': ['error', 'never'],
-                'unused-imports/no-unused-imports': isInEditor ? OFF : 'error',
+                'unused-imports/no-unused-imports': isInEditor ? 'off' : 'error',
 
                 'unused-imports/no-unused-vars': [
                     'error',
@@ -218,7 +220,7 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
             files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
             name: 'pionxzh:scripts-overrides',
             rules: {
-                'no-console': OFF,
+                'no-console': 'off',
             },
         },
     ]

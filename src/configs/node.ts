@@ -1,7 +1,7 @@
 import { pluginNode } from '../plugins'
-import type { FlatESLintConfigItem } from '../types'
+import type { ConfigItem } from '../types'
 
-export function node(): FlatESLintConfigItem[] {
+export function node(): ConfigItem[] {
     return [
         {
             name: 'pionxzh:node',

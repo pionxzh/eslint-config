@@ -11,6 +11,7 @@ import {
     jsonc,
     markdown,
     node,
+    sortKeys,
     sortPackageJson,
     sortTsconfig,
     stylistic,
@@ -22,9 +23,9 @@ import {
 } from './configs'
 import { react } from './configs/react'
 import { combine } from './utils'
-import type { FlatESLintConfigItem, OptionsConfig } from './types'
+import type { ConfigItem, OptionsConfig } from './types'
 
-const flatConfigProps: (keyof FlatESLintConfigItem)[] = [
+const flatConfigProps: (keyof ConfigItem)[] = [
     'files',
     'ignores',
     'languageOptions',
@@ -51,19 +52,27 @@ const ReactPackages = [
 /**
  * Construct an array of ESLint flat config items.
  */
-export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...userConfigs: (FlatESLintConfigItem | FlatESLintConfigItem[])[]) {
+export function pionxzh(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (ConfigItem | ConfigItem[])[]) {
     const {
         isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
         vue: enableVue = VuePackages.some(i => isPackageExists(i)),
         react: enableReact = ReactPackages.some(i => isPackageExists(i)),
         typescript: enableTypeScript = isPackageExists('typescript'),
-        stylistic: enableStylistic = true,
         gitignore: enableGitignore = true,
         overrides = {},
         componentExts = [],
     } = options
 
-    const configs: FlatESLintConfigItem[][] = []
+    const stylisticOptions = options.stylistic === false
+        ? false
+        : typeof options.stylistic === 'object'
+            ? options.stylistic
+            : {}
+    if (stylisticOptions && !('jsx' in stylisticOptions)) {
+        stylisticOptions.jsx = options.jsx ?? true
+    }
+
+    const configs: ConfigItem[][] = []
 
     if (enableGitignore) {
         if (typeof enableGitignore !== 'boolean') {
@@ -86,12 +95,15 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
         comments(),
         node(),
         jsdoc({
-            stylistic: enableStylistic,
+            stylistic: stylisticOptions,
         }),
         imports({
-            stylistic: enableStylistic,
+            stylistic: stylisticOptions,
         }),
         unicorn(),
+
+        // Optional plugins (not enabled by default)
+        sortKeys(),
     )
 
     if (enableVue) {
@@ -113,12 +125,8 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
         }))
     }
 
-    if (enableStylistic) {
-        configs.push(stylistic(
-            typeof enableStylistic === 'boolean'
-                ? {}
-                : enableStylistic,
-        ))
+    if (stylisticOptions) {
+        configs.push(stylistic(stylisticOptions))
     }
 
     if (options.test ?? true) {
@@ -131,7 +139,7 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
     if (enableVue) {
         configs.push(vue({
             overrides: overrides.vue,
-            stylistic: enableStylistic,
+            stylistic: stylisticOptions,
             typescript: !!enableTypeScript,
         }))
     }
@@ -139,7 +147,7 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
     if (enableReact) {
         configs.push(react({
             overrides: overrides.react,
-            stylistic: enableStylistic,
+            stylistic: stylisticOptions,
             typescript: !!enableTypeScript,
         }))
     }
@@ -148,7 +156,7 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
         configs.push(
             jsonc({
                 overrides: overrides.jsonc,
-                stylistic: enableStylistic,
+                stylistic: stylisticOptions,
             }),
             sortPackageJson(),
             sortTsconfig(),
@@ -158,7 +166,7 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
     if (options.yaml ?? true) {
         configs.push(yaml({
             overrides: overrides.yaml,
-            stylistic: enableStylistic,
+            stylistic: stylisticOptions,
         }))
     }
 
@@ -174,7 +182,7 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
     const fusedConfig = flatConfigProps.reduce((acc, key) => {
         if (key in options) acc[key] = options[key] as any
         return acc
-    }, {} as FlatESLintConfigItem)
+    }, {} as ConfigItem)
     if (Object.keys(fusedConfig).length) {
         configs.push([fusedConfig])
     }
@@ -183,9 +191,6 @@ export function pionxzh(options: OptionsConfig & FlatESLintConfigItem = {}, ...u
         ...configs,
         ...userConfigs,
     )
-
-    // recordRulesStateConfigs(merged)
-    // warnUnnecessaryOffRules()
 
     return merged
 }

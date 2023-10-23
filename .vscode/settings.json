@@ -53,6 +53,8 @@
     "**/node_modules": true
   },
   "cSpell.words": [
+    "JETBRAINS",
+    "slidev",
     "taze",
     "typecheck",
     "vitepress"

@@ -3,7 +3,7 @@ import { execa } from 'execa'
 import fg from 'fast-glob'
 import fs from 'fs-extra'
 import { afterAll, beforeAll, it } from 'vitest'
-import type { FlatESLintConfigItem, OptionsConfig } from '../src/types'
+import type { ConfigItem, OptionsConfig } from '../src/types'
 
 beforeAll(async () => {
     await fs.rm('_fixtures', { recursive: true, force: true })
@@ -51,7 +51,7 @@ runWithConfig(
     },
 )
 
-function runWithConfig(name: string, configs: OptionsConfig, ...items: FlatESLintConfigItem[]) {
+function runWithConfig(name: string, configs: OptionsConfig, ...items: ConfigItem[]) {
     it.concurrent(name, async ({ expect }) => {
         const from = resolve('fixtures/input')
         const output = resolve('fixtures/output', name)
@@ -74,7 +74,7 @@ export default pionxzh(
 
         await execa('npx', ['eslint', '.', '--fix'], {
             cwd: target,
-            stdio: 'inherit',
+            stdio: 'pipe',
         })
 
         const files = await fg('**/*', {
