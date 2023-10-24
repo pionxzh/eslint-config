@@ -16,7 +16,10 @@ function MyComponent() {
 				{greeting}
 			</h1>
 			<button onClick={incrementCounter}>Click me!</button>
-			<p>Counter: {counter}</p>
+			<p>
+				Counter:
+				{counter}
+			</p>
 		</div>
 	)
 }

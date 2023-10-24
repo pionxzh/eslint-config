@@ -74,7 +74,7 @@ export default pionxzh(
 
         await execa('npx', ['eslint', '.', '--fix'], {
             cwd: target,
-            stdio: 'pipe',
+            stdio: 'inherit',
         })
 
         const files = await fg('**/*', {
